@@ -6,5 +6,13 @@ then
   exit ${EXIT_CODE}
 fi
 
-echo "Building started"
+./gradlew connectedAndroidTest --info
+EXIT_CODE_ANDROID_TEST=$?
+if [ ${EXIT_CODE_ANDROID_TEST} != 0 ]
+then
+  echo "Exit code of connectedAndroidTest is " ${EXIT_CODE_ANDROID_TEST}
+  exit ${EXIT_CODE_ANDROID_TEST}
+fi
+
+echo "Build started"
 ./gradlew clean assembleDebug
